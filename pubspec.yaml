@@ -1,0 +1,157 @@
+name: mycgem
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter_localizations:
+    sdk: flutter
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons:
+  #google_sign_in: 4.5.1
+  firebase_storage: 3.1.6
+  connectivity: 0.4.8+6
+  image_picker: 0.6.7+1
+  timeago: 2.0.22
+  latlong:
+  flutter_linkify: 3.0.0
+  image_cropper: 1.2.0
+  geolocator: 5.3.2+2
+  shared_preferences: 0.5.7
+  photo_view: 0.9.2
+  flutter_spinkit: 4.1.2+1
+  flutter_swiper:
+    path: plugins/flutter_swiper-master 4
+  shimmer:
+  flutter_search_bar:
+  animated_text_kit: ^1.1.1
+  share: 0.6.4+3
+  url_launcher:
+  cached_network_image: 2.2.0+1
+  location: 3.0.2
+  flutter_widget_from_html:
+  uuid:
+  audioplayer: 0.8.1
+  random_string: ^0.0.2
+  bubble_tab_indicator: 0.1.4
+  flutter_svg: ^0.19.3
+  flutter_screenutil: 4.0.3+3
+  rflutter_alert: 1.0.3
+  mime:
+  #webfeed: ^0.4.2
+  percent_indicator: 2.1.5
+  mime_type:
+  flutter_document_picker:
+   # git: https://github.com/QwilApp/flutter_document_picker
+  scoped_model:
+  #firebase_dynamic_links: ^0.5.0
+  youtube_api:
+   # path: plugins/youtube_api-0.7.2/
+  #json_annotation:
+  image:
+ # flutter_xlider:
+  #font_awesome_flutter:
+  #carousel_pro:
+  parse_server_sdk: 1.0.28
+ # random_color: ^1.0.5carousel_slider
+  permission_handler: 4.0.0
+  #flutter_facebook_login: 3.0.0
+  firebase_analytics: 5.0.15
+  firebase_auth: 0.14.0+8
+  flutter_native_image: 0.0.4
+  firebase_database: 3.0.9
+  #firebase_messaging: 5.1.8
+  flutter_webview_plugin: 0.4.0
+  cloud_firestore: 0.12.10
+  flutter_sound: 2.1.0
+  bubble_bottom_bar:
+ # advance_pdf_viewer: 1.1.6
+#  webview_flutter: #1.0.7 #1.0.0
+  basic_utils: ^1.2.0
+  regexed_validator:
+  youtube_plyr_iframe:
+  #flutter_app_badger:
+  #wakelock: ^0.5.6
+  chewie: 0.12.2
+  path_provider: 1.6.28
+  html_editor:
+    path: plugins/html_editor-1.0.1
+  #flutter_youtube:
+  #apple_sign_in: ^0.1.0
+  onesignal_flutter:
+  draggable_scrollbar: 0.0.4
+  carousel_slider: 4.0.0
+
+  carousel_pro: 1.0.0
+  google_fonts: 1.1.2
+  chat_bubbles: ^1.2.0
+  flutter_chat_bubble: ^2.0.0
+  dropdown_button2: 1.0.1
+  firebase_remote_config:
+  flutter_inappwebview: 4.0.0+4
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+override_dependecies:
+ # webview_flutter: #1.0.4
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - images/icons/
+    - images/
+    - assets/
+    - assets/images/
+    - assets/icons/
+
+
+  fonts:
+    - family: coffee
+      fonts:
+        - asset: assets/fonts/Louis George Cafe.ttf
+        - asset: assets/fonts/Louis George Cafe Bold.ttf
+        - asset: assets/fonts/Louis George Cafe Bold Italic.ttf
+        - asset: assets/fonts/Louis George Cafe Italic.ttf
+        - asset: assets/fonts/Louis George Cafe Light.ttf
+        - asset: assets/fonts/Louis George Cafe Light Italic.ttf
+
+
+

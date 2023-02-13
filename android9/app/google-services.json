@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "963838677099",
+    "project_id": "ccis-connect",
+    "storage_bucket": "ccis-connect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963838677099:android:8e5d71148c5e313ddfe12e",
+        "android_client_info": {
+          "package_name": "com.linkommunity.ccis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963838677099-4pfmuu07pakr8diu7niku4nlqpaib1ho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO_masw2MZNjH6-PrVAdMdGlKBwi2DMPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963838677099-4pfmuu07pakr8diu7niku4nlqpaib1ho.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "963838677099-nlucjul0nnqtd4vjg2dd03uj3fi6na9t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.linkommunity.ccis"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
