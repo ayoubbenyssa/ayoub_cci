@@ -290,10 +290,11 @@ class Widgets {
     return TextFormField(
       style: new TextStyle(fontSize: 15.0, color: Colors.black),
       obscureText: obscure,
-      maxLines: 12,
+      maxLines: 6,
       controller: myController,
       focusNode: focus,
       decoration: InputDecoration(
+        border: InputBorder.none ,
         labelText: name,
         contentPadding: new EdgeInsets.all(8.0),
         hintText: name,
@@ -341,7 +342,7 @@ class Widgets {
       focusNode: focus,
       decoration: InputDecoration(
         errorMaxLines: 3,
-      //  border: InputBorder.none,
+       border: name == "Entrez votre numéro de téléphone" || name ==" Addresse" ? InputBorder.none : null,
         contentPadding: new EdgeInsets.all(0.0),
         hintText: name,
         hintStyle: new TextStyle(
@@ -372,6 +373,7 @@ class Widgets {
           controller: myController,
           focusNode: focus,
           decoration: InputDecoration(
+            border: name == "Prénom" || name == "Nom"? InputBorder.none :null,
             //helperText: name,
             labelText: name,
             contentPadding: new EdgeInsets.all(8.0),
@@ -432,6 +434,7 @@ class Widgets {
           focusNode: focus,
           decoration: InputDecoration(
             //helperText: name,
+            border: name == "Activités  " ?  InputBorder.none : null,
             labelText: name,
             contentPadding: new EdgeInsets.all(8.0),
             hintText: name,

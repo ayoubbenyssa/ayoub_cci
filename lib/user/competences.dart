@@ -105,8 +105,11 @@ class _CmpetencesState extends State<Cmpetences> {
         },
         child: Scaffold(
           key: _scaffoldKey,
-          appBar: new AppBar(
-            title: new Text("Profil"),
+
+          appBar: AppBar(
+            backgroundColor: Color.fromRGBO(247, 247, 247, 100),
+            elevation: 0.0,
+            iconTheme: IconThemeData(color: Color(0xff272C6E)),
             actions: <Widget>[
               new IconButton(
                   icon: new Icon(Icons.check),
@@ -127,7 +130,27 @@ class _CmpetencesState extends State<Cmpetences> {
                     Navigator.pop(context, widget.user);
                   })
             ],
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Profil", style: TextStyle(color: Color(0xff272C6E),fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "louis george cafe"),),
+                Container(
+                  margin: EdgeInsets.only(right: 10,),
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(9)),
+
+                  ),
+                  child: Center(
+                    child: Image.asset("images/logo.png"),
+                  ),
+                ),
+              ],
+            ),
           ),
+
           body: new ListView(
             padding: new EdgeInsets.all(16.0),
             children: <Widget>[

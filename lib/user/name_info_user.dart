@@ -78,7 +78,8 @@ class _InfoUser1State extends State<InfoUser1> {
                   await parse_s.putparse("users/" + widget.user.id, js);
 
                   Navigator.pop(context, widget.user);
-                })
+                }
+                )
           ],
         ),
         body: Center(

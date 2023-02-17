@@ -392,7 +392,7 @@ class _EditOrganismeState extends State<EditMyOrganisme>
 
 
     Widget activities = Widgets.textfield_des(
-      "Activités",
+      "Activités  ",
       _focusact,
       "",
       _activcontroller,
@@ -423,8 +423,8 @@ class _EditOrganismeState extends State<EditMyOrganisme>
         ? new Container(
         margin: EdgeInsets.only(left: 12.0,right: 12),
         decoration: new BoxDecoration(
-            border: new Border.all(color: Colors.grey[400], width: 1.0),
-            borderRadius: new BorderRadius.circular(4.0)),
+            // border: new Border.all(color: Colors.grey[400], width: 1.0),
+            borderRadius: new BorderRadius.circular(25.0)),
         child: Widgets.textfield0(
           "Ville",
           _focusville,
@@ -460,8 +460,8 @@ class _EditOrganismeState extends State<EditMyOrganisme>
         child: new Container(
             margin: EdgeInsets.only(left: 12.0),
             decoration: new BoxDecoration(
-                border: new Border.all(color: Colors.grey[400], width: 1.0),
-                borderRadius: new BorderRadius.circular(4.0)),
+                // border: new Border.all(color: Colors.grey[400], width: 1.0),
+                borderRadius: new BorderRadius.circular(25.0)),
             child: AbsorbPointer(
                 child: Widgets.textfield0(
                   "Ville",
@@ -471,7 +471,8 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                   TextInputType.text,
                 )))));
 
-    Widget pays =   Expanded(child:GestureDetector(
+    Widget pays =   Expanded(
+        child:GestureDetector(
         onTap: () async {
           setState(() {
             _authHint = "";
@@ -492,8 +493,8 @@ class _EditOrganismeState extends State<EditMyOrganisme>
             child: new Container(
                 margin: EdgeInsets.only(left: 12.0),
                 decoration: new BoxDecoration(
-                    border: new Border.all(color: Colors.grey[400], width: 1.0),
-                    borderRadius: new BorderRadius.circular(4.0)),
+                    // border: new Border.all(color: Colors.grey[400], width: 1.0),
+                    borderRadius: new BorderRadius.circular(25.0)),
                 child: Widgets.textfield0(
                   "Pays",
                   _focuspa,
@@ -506,10 +507,11 @@ class _EditOrganismeState extends State<EditMyOrganisme>
     Widget address = new Container(
         margin: EdgeInsets.only(left: 12.0, right: 12.0),
         decoration: new BoxDecoration(
-            border: new Border.all(color: Colors.grey[400], width: 1.0),
-            borderRadius: new BorderRadius.circular(4.0)),
-        child: Widgets.textfield("Addresse", _focusadr, "", _adrcontroller,
-            TextInputType.text, val.validateAddress));
+            // border: new Border.all(color: Colors.grey[400], width: 1.0),
+            borderRadius: new BorderRadius.circular(25.0)),
+        child: Widgets.textfield(" Addresse", _focusadr, "", _adrcontroller,
+            TextInputType.text, val.validateAddress)
+    );
 
     open_bottomsheet() {
       showModalBottomSheet<bool>(
@@ -578,165 +580,253 @@ class _EditOrganismeState extends State<EditMyOrganisme>
 
     return Scaffold(
         key: _scaffoldKey,
-        appBar: new AppBar(
-          iconTheme: IconThemeData(color: Fonts.col_app_fon),
-          backgroundColor: Colors.white,
-          title: new Text(
-            "Mon organisme",
-            style: TextStyle(color: Fonts.col_app_fon),
-          ),
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(247, 247, 247, 100),
           elevation: 0.0,
+          iconTheme: IconThemeData(color: Color(0xff272C6E)),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Mon organisme", style: TextStyle(color: Color(0xff272C6E),fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "louis george cafe"),),
+              Container(
+                margin: EdgeInsets.only(right: 10,),
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(9)),
+
+                ),
+                child: Center(
+                  child: Image.asset("images/logo.png"),
+                ),
+              ),
+            ],
+          ),
         ),
-        body: new Container(
 
-            child:
+        body: Container(
+          color: Color.fromRGBO(247, 247, 247, 100),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            margin: EdgeInsets.only(left: 27, right: 27,top: 60),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey, width: 0.5),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(25),
+                topLeft: Radius.circular(25),
+              ),
+              color: Colors.white,
+            ),
+            child: new Container(
 
-            ListView(children: <Widget>[
-              Column(children: <Widget>[
-                new Form(
-                    key: _formKey,
-                    autovalidate: _autovalidate,
-                    //onWillPop: _warnUserAboutInvalidData,
-                    child: new Column(
-                      //mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment:
-                        CrossAxisAlignment.center,
-                        children: <Widget>[
-                          new Container(height: 12.0),
-                          /*new Center(
-                                            child: Widgets.subtitle5(
-                                                Fonts.col_app_fonn,
-                                                widget.type.toString())),*/
+                child:
+
+                ListView(children: <Widget>[
+                  Column(children: <Widget>[
+                    new Form(
+                        key: _formKey,
+                        autovalidate: _autovalidate,
+                        //onWillPop: _warnUserAboutInvalidData,
+                        child: new Column(
+                          //mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment:
+                            CrossAxisAlignment.center,
+                            children: <Widget>[
+                              new Container(height: 12.0),
+                              /*new Center(
+                                                child: Widgets.subtitle5(
+                                                    Fonts.col_app_fonn,
+                                                    widget.type.toString())),*/
 
 
-                          ///   Nom,
+                              ///   Nom,
 
-                          ///  prenom,
-                          new Container(height: 12.0),
+                              ///  prenom,
+                              // new Container(height: 12.0),
+                              //
+                              //
+                              //
+                              // Container(
+                              //   height: 12.0,
+                              // ),
+                              // pht,
 
+                              Container(
+                                height: 12.0,
+                              ),
 
+                              im == ""
+                                  ? Container()
+                                  : new Stack(children: <Widget>[
+                                new Container(
+                                    padding:
+                                    new EdgeInsets.all(4.0),
+                                    width: 100.0,
+                                    height: 100.0,
+                                    child: new Material(
+                                        borderRadius:
+                                        new BorderRadius
+                                            .circular(12.0),
+                                        shadowColor:
+                                        Colors.white,
+                                        elevation: 3.0,
+                                        child:
+                                        new Image.network(
+                                          im,
+                                          fit: BoxFit.cover,
+                                        ))),
+                                new Positioned(
+                                    top: 0.0,
+                                    right: 2.0,
+                                    child: new InkWell(
+                                      child: new CircleAvatar(
+                                          radius: 10.0,
+                                          backgroundColor:
+                                          const Color(
+                                              0xffff374e),
+                                          child: new Center(
+                                              child: new Icon(
+                                                Icons.close,
+                                                size: 18.0,
+                                                color: Colors.white,
+                                              ))),
+                                      onTap: () {
+                                        setState(() {
+                                          im = "";
+                                        });
+                                      },
+                                    ))
+                              ]),
 
-                          Container(
-                            height: 12.0,
-                          ),
-                          pht,
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.start,
-                            children: [
-                              new FlatButton(
-                                onPressed: () {
-                                  open_bottomsheet();
-                                },
+                              SizedBox(height: 30,),
+
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                                  border: Border.all(color: Fonts.col_app,width: 0.5)
+                                ),
                                 child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.start,
                                   children: [
-                                    new Text(
-                                      "AJOUTER LE LOGO",
-                                      style: new TextStyle(
-                                        color: Fonts.col_app,
-                                        fontWeight:
-                                        FontWeight.bold,
+                                    new FlatButton(
+                                      onPressed: () {
+                                        open_bottomsheet();
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                                        children: [
+                                          new Text(
+                                            "Ajouter le logo de votre organisme",
+                                            style: new TextStyle(
+                                              color: Fonts.col_app,
+                                              fontWeight:
+                                              FontWeight.bold,
+                                              fontSize: 13,
+                                              fontFamily: "louis george cafe"
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 8,
+                                          ),
+                                          Icon(
+                                            Icons.add_circle_outline,
+                                            color: Fonts.col_app,
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    Container(
-                                      width: 8,
-                                    ),
-                                    Icon(
-                                      Icons.add_circle_outline,
-                                      color: Fonts.col_app,
-                                    )
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
-                          Container(
-                            height: 12.0,
-                          ),
 
-                          im == ""
-                              ? Container()
-                              : new Stack(children: <Widget>[
-                            new Container(
-                                padding:
-                                new EdgeInsets.all(4.0),
-                                width: 70.0,
-                                height: 70.0,
-                                child: new Material(
-                                    borderRadius:
-                                    new BorderRadius
-                                        .circular(12.0),
-                                    shadowColor:
-                                    Colors.white,
-                                    elevation: 3.0,
-                                    child:
-                                    new Image.network(
-                                      im,
-                                      fit: BoxFit.cover,
-                                    ))),
-                            new Positioned(
-                                top: 0.0,
-                                right: 2.0,
-                                child: new InkWell(
-                                  child: new CircleAvatar(
-                                      radius: 10.0,
-                                      backgroundColor:
-                                      const Color(
-                                          0xffff374e),
-                                      child: new Center(
-                                          child: new Icon(
-                                            Icons.close,
-                                            size: 18.0,
-                                            color: Colors.white,
-                                          ))),
-                                  onTap: () {
-                                    setState(() {
-                                      im = "";
-                                    });
-                                  },
-                                ))
-                          ]),
+                              SizedBox(height: 28,),
 
-                          ///  coomissions_widget(),
-                          /// coomissions_feds(),
-
-                          ///   region(),
+                              Container(width: MediaQuery.of(context).size.width * 0.75,height: 1,color: Color(0xffF8F8F8),),
 
 
 
-                          Row(
-                            children: <Widget>[
-                              pays,
-                              Container(
-                                width: 2,
+                              SizedBox(height: 12,),
+
+                              new Container(
+                                height: 12.0,
                               ),
-                              ville,
-                            ],
-                          ),
-                          new Container(
-                            height: 12.0,
-                          ),
-                          address,
-                          new Container(
-                            height: 12.0,
-                          ),
-                        Container(padding: EdgeInsets.only(left: 12,right: 12),
-                            child: activities),
+                              Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffF8F8F8),
+                                    borderRadius: BorderRadius.all(Radius.circular(25))
+                                  ),
+                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  child: activities),
 
 
-                          MyForm(widget.membre.tels),
 
-                          hintText(),
-                          new Container(
-                            height: 12.0,
-                          ),
-                          btn_log,
-                          new Container(
-                            height: 8.0,
-                          ),
-                        ]))
-              ])
-            ])
+                              ///  coomissions_widget(),
+                              /// coomissions_feds(),
+
+                              ///   region(),
+
+
+
+                              new Container(
+                                height: 12.0,
+                              ),
+
+                              Container(
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffF8F8F8),
+                                      borderRadius: BorderRadius.all(Radius.circular(25))
+                                  ),
+                                  padding: EdgeInsets.only(left: 12,right: 12),child: pays),
+
+                              new Container(
+                                height: 12.0,
+                              ),
+
+                              Container(
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffF8F8F8),
+                                      borderRadius: BorderRadius.all(Radius.circular(25))
+                                  ),
+                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  child: ville),
+
+                              // Row(
+                              //   children: <Widget>[
+                              //
+                              //     Container(
+                              //       width: 2,
+                              //     ),
+                              //   ],
+                              // ),
+                              new Container(
+                                height: 12.0,
+                              ),
+                              Container(
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffF8F8F8),
+                                      borderRadius: BorderRadius.all(Radius.circular(25))
+                                  ),
+                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  child: address),
+
+                              MyForm(widget.membre.tels),
+
+                              hintText(),
+                              new Container(
+                                height: 12.0,
+                              ),
+                              btn_log,
+                              new Container(
+                                height: 8.0,
+                              ),
+                            ]))
+                  ])
+                ])
+            ),
+          ),
         ));
   }
 }
@@ -809,8 +899,12 @@ class MyFormState extends State<MyForm> {
       List<Widget> friendsTextFields = [];
       for (int i = 0; i < list_tel.length; i++) {
         friendsTextFields.add(
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+            Container(
+              decoration: BoxDecoration(
+                  color: Color(0xffF8F8F8),
+                  borderRadius: BorderRadius.all(Radius.circular(25))
+              ),
+              padding: EdgeInsets.only(left: 12,right: 12),
               child: Row(
                 children: [
                   Expanded(child: FriendTextFields(i)),
@@ -833,9 +927,9 @@ class MyFormState extends State<MyForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            SizedBox(height: 20,),
-            Text('Ajouter un numéro de téléphone',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),),
+            // SizedBox(height: 20,),
+            // Text('Ajouter un numéro de téléphone',
+            //   style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),),
             ..._getFriends(),
             SizedBox(height: 40,),
 
@@ -886,6 +980,7 @@ class _FriendTextFieldsState extends State<FriendTextFields> {
       controller: _nameController,
       onChanged: (v) => MyFormState.list_tel[widget.index] = v,
       decoration: InputDecoration(
+        border: InputBorder.none,
           hintText: 'Numéro de téléphone'
       ),
       validator: val.validatephonenumber

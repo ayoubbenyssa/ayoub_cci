@@ -154,13 +154,11 @@ class _AvailableTaimeState extends State<Objectifs_widget> {
           Navigator.pop(context, widget.user);
         },
         child: new Scaffold(
-            appBar: new AppBar(
-              iconTheme: new IconThemeData(color: Fonts.col_app),
-              backgroundColor: Colors.grey[50],
-              title: new Text(
-                "Centres d’intérêts",
-                style: new TextStyle(color: Fonts.col_app),
-              ),
+
+            appBar: AppBar(
+              backgroundColor: Color.fromRGBO(247, 247, 247, 100),
+              elevation: 0.0,
+              iconTheme: IconThemeData(color: Color(0xff272C6E)),
               actions: <Widget>[
                 new IconButton(
                     icon: new Icon(Icons.check),
@@ -186,7 +184,27 @@ class _AvailableTaimeState extends State<Objectifs_widget> {
                       Navigator.pop(context, widget.user);
                     })
               ],
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Centres d’intérêts", style: TextStyle(color: Color(0xff272C6E),fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "louis george cafe"),),
+                  Container(
+                    margin: EdgeInsets.only(right: 10,),
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(9)),
+
+                    ),
+                    child: Center(
+                      child: Image.asset("images/logo.png"),
+                    ),
+                  ),
+                ],
+              ),
             ),
+
             body: loading
                 ? new Center(
               child: new RefreshProgressIndicator(),

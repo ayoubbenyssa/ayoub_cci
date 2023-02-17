@@ -16,7 +16,6 @@ class Bio extends StatefulWidget {
 class _InfoUser1State extends State<Bio> {
   final _bioctrl = new TextEditingController();
   FocusNode _biofocus = new FocusNode();
-
   ParseServer parse_s = new ParseServer();
 
   @override
@@ -41,7 +40,6 @@ class _InfoUser1State extends State<Bio> {
       widget.user.bio,
       _bioctrl,
       TextInputType.text,
-
 
     );
 
