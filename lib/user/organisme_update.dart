@@ -504,14 +504,18 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                 )))));
 
 
-    Widget address = new Container(
+    Widget address = new Container (
+    decoration: BoxDecoration(
+        color: Color(0xffF8F8F8),
+        borderRadius: BorderRadius.all(Radius.circular(25)))
+    , child : Container(
         margin: EdgeInsets.only(left: 12.0, right: 12.0),
         decoration: new BoxDecoration(
             // border: new Border.all(color: Colors.grey[400], width: 1.0),
             borderRadius: new BorderRadius.circular(25.0)),
         child: Widgets.textfield(" Addresse", _focusadr, "", _adrcontroller,
             TextInputType.text, val.validateAddress)
-    );
+    ));
 
     open_bottomsheet() {
       showModalBottomSheet<bool>(
@@ -564,19 +568,23 @@ class _EditOrganismeState extends State<EditMyOrganisme>
         fontWeight: FontWeight.w500);
     var clr = Fonts.col_app_fon;
 
-    Widget btn_log = new Padding(
-        padding: new EdgeInsets.only(left: 36.0, right: 36.0),
-        child: new Material(
-            elevation: 12.0,
-            shadowColor: clr,
-            borderRadius: new BorderRadius.circular(12.0),
-            color: clr,
-            child: new MaterialButton(
-              // color:  const Color(0xffa3bbf1),
-                onPressed: () {
-                  _handleSubmitted();
-                },
-                child: new Text("Enregistrer".toUpperCase(), style: style))));
+    Widget btn_log = new InkWell(
+      // color:  const Color(0xffa3bbf1),
+        onTap: () {
+          _handleSubmitted();
+        },
+        child: Center(child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(25)),
+            border: Border.all(color : Color(0xffF8F8F8) ,width: 0.5),
+            color :Color(0xff218BB1),
+          ),
+          // height: 48,
+          width: 100,
+          child: Center(child: Text("Enregistrer",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.w500,fontFamily: "louis george cafe"),)),
+        ),
+        ),);
 
     return Scaffold(
         key: _scaffoldKey,
@@ -657,7 +665,20 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                               ),
 
                               im == ""
-                                  ? Container()
+                                  ? Container(
+                                  padding:
+                                  new EdgeInsets.all(4.0),
+                                  width: 100.0,
+                                  height: 100.0,
+                                  child: new Material(
+                                      borderRadius:
+                                      new BorderRadius
+                                          .circular(12.0),
+                                      shadowColor:
+                                      Colors.white,
+                                      elevation: 3.0,
+                                      child:
+                                      new Image.asset("assets/images/imagee.png",fit: BoxFit.cover,)))
                                   : new Stack(children: <Widget>[
                                 new Container(
                                     padding:
@@ -731,10 +752,7 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                           Container(
                                             width: 8,
                                           ),
-                                          Icon(
-                                            Icons.add_circle_outline,
-                                            color: Fonts.col_app,
-                                          )
+                                          Image.asset("assets/images/attchaa.png",fit: BoxFit.cover,color: Fonts.col_app,)
                                         ],
                                       ),
                                     ),
@@ -747,19 +765,35 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                               Container(width: MediaQuery.of(context).size.width * 0.75,height: 1,color: Color(0xffF8F8F8),),
 
 
-
                               SizedBox(height: 12,),
 
-                              new Container(
-                                height: 12.0,
-                              ),
+                              // new Container(
+                              //   height: 12.0,
+                              // ),
                               Container(
                                   decoration: BoxDecoration(
                                     color: Color(0xffF8F8F8),
                                     borderRadius: BorderRadius.all(Radius.circular(25))
                                   ),
                                   padding: EdgeInsets.only(left: 12,right: 12),
-                                  child: activities),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                                    children: [
+                                      Container(
+
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+
+                                        Container(child: Text("Activités",style: TextStyle(fontSize: 13,fontFamily: "louis george cafe" ,color: Color(0xffA6A6A6)),),),
+                                        
+                                        Container(child: Image.asset("assets/images/edittt.png",height: 30,width: 30,fit: BoxFit.cover,color: Colors.red,),)
+                                      ],),),
+                                      activities,
+                                    ],
+                                  )),
 
 
 
@@ -779,7 +813,16 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                       color: Color(0xffF8F8F8),
                                       borderRadius: BorderRadius.all(Radius.circular(25))
                                   ),
-                                  padding: EdgeInsets.only(left: 12,right: 12),child: pays),
+                                  padding: EdgeInsets.only(left: 12,right: 12),child: Row(
+                                    children: [
+                                      pays,
+                                      Container(child:
+                                      Image.asset("assets/images/edittt.png",
+                                        height: 30,width: 30,fit: BoxFit.cover,color: Colors.red,),
+                                      )
+
+                                    ],
+                                  )),
 
                               new Container(
                                 height: 12.0,
@@ -791,7 +834,13 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                       borderRadius: BorderRadius.all(Radius.circular(25))
                                   ),
                                   padding: EdgeInsets.only(left: 12,right: 12),
-                                  child: ville),
+                                  child: Row(
+                                    children: [
+                                      ville,
+                                      Container(child: Image.asset("assets/images/edittt.png",height: 30,width: 30,fit: BoxFit.cover,color: Colors.red,),)
+
+                                    ],
+                                  )),
 
                               // Row(
                               //   children: <Widget>[
@@ -804,13 +853,22 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                               new Container(
                                 height: 12.0,
                               ),
-                              Container(
-                                  decoration: BoxDecoration(
-                                      color: Color(0xffF8F8F8),
-                                      borderRadius: BorderRadius.all(Radius.circular(25))
-                                  ),
-                                  padding: EdgeInsets.only(left: 12,right: 12),
-                                  child: address),
+                              // Container(
+                              //     decoration: BoxDecoration(
+                              //         color: Color(0xffF8F8F8),
+                              //         borderRadius: BorderRadius.all(Radius.circular(25))
+                              //     ),
+                              //     padding: EdgeInsets.only(left: 12,right: 12),
+                              //     child: Row(
+                              //       children: [
+                              //         address,
+                              //         // Container(child: Image.asset("assets/images/edittt.png",height: 30,width: 30,fit: BoxFit.cover,color: Colors.red,),)
+                              //
+                              //       ],
+                              //     )),
+
+                              address,
+
 
                               MyForm(widget.membre.tels),
 
