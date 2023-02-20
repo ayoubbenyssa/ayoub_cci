@@ -1583,7 +1583,7 @@ class _Details_userState extends State<MyProfile>
       return  Container(
         child: Row(
           children: [
-            Image.asset(icon ,height: 18 , width: 11, ),
+            Image.asset(icon  ,height: icon == "images/phonex.png" ? 28 : 18 , width: icon == "images/phonex.png" ? 21 : 11, ),
             SizedBox(width: 11,),
             Container(
               child:
@@ -1741,7 +1741,7 @@ class _Details_userState extends State<MyProfile>
 
                         new Row(mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              Icon(Icons.account_circle,size: 20,),
+                              Image.asset("images/customer-review.png" ,height: 25 , width: 15, ),
                               SizedBox(width: 11,),
                           new Center(
                               child: new Text(LinkomTexts.of(context).compe(),
@@ -1781,7 +1781,7 @@ class _Details_userState extends State<MyProfile>
                     new Row(
                         mainAxisAlignment: MainAxisAlignment.start , children: <Widget>[
 
-                      Icon(Icons.account_circle,size: 20,),
+                      Image.asset("images/Tracee.png" ,height: 20 , width: 13, ),
                       SizedBox(width: 11,),
                       new Center(
                           child: new Text(
@@ -1818,7 +1818,7 @@ class _Details_userState extends State<MyProfile>
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       new Icon(Icons.bookmark_border,
-                                          color: Fonts.col_app),
+                                          size: 18, color: Fonts.col_app),
                                       new Container(
                                         width: 4.0,
                                       ),
@@ -1849,7 +1849,8 @@ class _Details_userState extends State<MyProfile>
                     Container(
                       child: Row(
                         children: [
-                          Icon(Icons.email,size: 20,),
+
+                          Image.asset("images/mailx.png" ,height: 28 , width: 21, ),
                           SizedBox(width: 11,),
                           Container(
                             child:
@@ -1861,7 +1862,7 @@ class _Details_userState extends State<MyProfile>
                     ),
 
                     informatin("assets/images/user.png" , widget.user.age),
-                    informatin("assets/images/user.png" , widget.user.phone),
+                    informatin("images/phonex.png" , widget.user.phone),
 
 
                     InkWell(
@@ -1915,7 +1916,7 @@ class _Details_userState extends State<MyProfile>
                         children: [
                           Row(
                             children: [
-                              informatin("images/user.png" , "Link your account "),
+                              informatin("images/attchaa.png" , "Link your account "),
                               SizedBox(width: 3,),
                               Image.asset("images/instagram.png",height: 17,width: 17,),
                               SizedBox(width: 3,),
@@ -2271,13 +2272,14 @@ class _Details_userState extends State<MyProfile>
                       child: Center(child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle ,
-                          border: Border.all(color : Color(0xffF8F8F8) ,width: 0.5),
+                          border: Border.all(color : Color(0xffF8F8F8) ,width: 2),
                           color :Colors.white,
                         ),
                         height: 48,
                         width: 48,
                         child: CircleAvatar(
-                          child: Icon(Icons.edit,size: 30,),
+                          backgroundColor: Colors.white,
+                          child: Image.asset('images/edittt.png',height: 30,width: 25,),
                         ),
                       ),
                       ),

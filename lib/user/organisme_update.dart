@@ -584,7 +584,8 @@ class _EditOrganismeState extends State<EditMyOrganisme>
           width: 100,
           child: Center(child: Text("Enregistrer",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.w500,fontFamily: "louis george cafe"),)),
         ),
-        ),);
+        ),
+    );
 
     return Scaffold(
         key: _scaffoldKey,
@@ -678,7 +679,7 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                       Colors.white,
                                       elevation: 3.0,
                                       child:
-                                      new Image.asset("assets/images/imagee.png",fit: BoxFit.cover,)))
+                                      new Image.asset("images/imagee.png",fit: BoxFit.cover,)))
                                   : new Stack(children: <Widget>[
                                 new Container(
                                     padding:
@@ -736,23 +737,25 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                         open_bottomsheet();
                                       },
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        mainAxisAlignment: MainAxisAlignment.start,
 
                                         children: [
-                                          new Text(
-                                            "Ajouter le logo de votre organisme",
-                                            style: new TextStyle(
-                                              color: Fonts.col_app,
-                                              fontWeight:
-                                              FontWeight.bold,
-                                              fontSize: 13,
-                                              fontFamily: "louis george cafe"
+                                          Container(
+                                            child: new Text(
+                                              "Ajouter le logo de votre organisme",
+                                              style: new TextStyle(
+                                                color: Fonts.col_app,
+                                                fontWeight:
+                                                FontWeight.bold,
+                                                fontSize: 13,
+                                                fontFamily: "louis george cafe"
+                                              ),
                                             ),
                                           ),
                                           Container(
-                                            width: 8,
+                                            width: 60,
                                           ),
-                                          Image.asset("assets/images/attchaa.png",fit: BoxFit.cover,color: Fonts.col_app,)
+                                          Image.asset("images/attchaa.png",fit: BoxFit.cover,color: Fonts.col_app,height: 12,width: 12,)
                                         ],
                                       ),
                                     ),
@@ -775,7 +778,7 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                     color: Color(0xffF8F8F8),
                                     borderRadius: BorderRadius.all(Radius.circular(25))
                                   ),
-                                  padding: EdgeInsets.only(left: 12,right: 12),
+                                  padding: EdgeInsets.only(top: 10,left: 12,right: 12),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -788,8 +791,9 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                           children: [
 
                                         Container(child: Text("Activités",style: TextStyle(fontSize: 13,fontFamily: "louis george cafe" ,color: Color(0xffA6A6A6)),),),
-                                        
-                                        Container(child: Image.asset("assets/images/edittt.png",height: 30,width: 30,fit: BoxFit.cover,color: Colors.red,),)
+                                        Expanded(child: Container()),
+                                        Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                                         SizedBox(width: 10,),
                                       ],),),
                                       activities,
                                     ],
@@ -816,10 +820,8 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                   padding: EdgeInsets.only(left: 12,right: 12),child: Row(
                                     children: [
                                       pays,
-                                      Container(child:
-                                      Image.asset("assets/images/edittt.png",
-                                        height: 30,width: 30,fit: BoxFit.cover,color: Colors.red,),
-                                      )
+                                      Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                                      SizedBox(width: 10,),
 
                                     ],
                                   )),
@@ -837,7 +839,8 @@ class _EditOrganismeState extends State<EditMyOrganisme>
                                   child: Row(
                                     children: [
                                       ville,
-                                      Container(child: Image.asset("assets/images/edittt.png",height: 30,width: 30,fit: BoxFit.cover,color: Colors.red,),)
+                                      Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                                      SizedBox(width: 10,),
 
                                     ],
                                   )),

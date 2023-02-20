@@ -176,11 +176,11 @@ class _Edit_profileState extends State<Edit_profile> {
     return new InkWell(
         child: new Container(
             padding: EdgeInsets.only(left: 8.0, right: 8.0),
-            child: new Icon(
-              Icons.edit,
-              color: colors,
-              size: 18,
-            )),
+            child: new Container(child: Image.asset("images/edittt.png",height: 22,width: 13,
+            ),
+            ),
+
+        ),
         onTap: () {
           tap();
         });
@@ -330,10 +330,7 @@ class _Edit_profileState extends State<Edit_profile> {
                   child: new IconButton(
                     iconSize: 1,
                       color: Colors.grey[100],
-                      icon: new Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                      ),
+                      icon: new Image.asset("images/edittt.png" ,height: 25 , width: 15, ),
                       onPressed: () {
                         open_bottomsheet();
                       }))),
@@ -406,7 +403,7 @@ class _Edit_profileState extends State<Edit_profile> {
       ),
 
       new Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-        Container(child: Image.asset("assets/images/heart .png"),),
+        Container(child: Image.asset("images/customer-review.png",height: 22,width: 13,),),
         Container(width: 12.0),
         new Container(
             child: new Text(LinkomTexts.of(context).compe(),
@@ -420,7 +417,7 @@ class _Edit_profileState extends State<Edit_profile> {
       ),
 
       new Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-        Container(child: Image.asset("assets/images/heart .png"),),
+        Container(child: Image.asset("images/heart .png",height: 18,width: 11,),),
         Container(width: 12.0),
 
         new Container(
