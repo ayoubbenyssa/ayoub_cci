@@ -111,6 +111,8 @@ dependencies:
   dropdown_button2: 1.0.1
   firebase_remote_config:
   flutter_inappwebview: 4.0.0+4
+  flutter_rounded_date_picker: 2.0.2
+
 
 
 dev_dependencies:

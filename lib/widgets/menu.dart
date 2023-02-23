@@ -17,6 +17,7 @@ import 'package:mycgem/widgets/apebi_pre.dart';
 import 'package:mycgem/widgets/app_appbar.dart';
 import 'package:mycgem/widgets/chambre_conseil.dart';
 import 'package:mycgem/widgets/formations.dart';
+import 'package:mycgem/widgets/menu%20widgets/Foires_Salons.dart';
 import 'package:mycgem/widgets/partners.dart';
 import 'package:mycgem/widgets/services_pre.dart';
 import 'package:mycgem/widgets/widgets.dart';
@@ -34,6 +35,11 @@ import 'package:mycgem/widgets/header_menu.dart';
 import 'package:mycgem/home/publications.dart';
 import 'package:mycgem/widgets/invite_friends.dart';
 import 'package:mycgem/services/app_services.dart';
+
+import 'menu widgets/Opportunités_affaires.dart';
+import 'menu widgets/Partenariats_conventions.dart';
+import 'menu widgets/Presentation.dart';
+import 'menu widgets/telechargements.dart';
 
 var API_KEY = "AIzaSyDCB1z3cOQuIaf9LxLI6adVYjsSJC5TpDU";
 
@@ -226,7 +232,33 @@ Navigator.push(context,
             widget.lng, widget.onLocaleChange,
             user: widget.user);
       }));
-    } else if (a == "e") {
+    } else if (a == "Telechargements"){
+      Navigator.push(context,
+          new MaterialPageRoute(builder: (BuildContext context) {
+            return new Telechargements();
+          }));
+    } else if (a == "Foires & Salons"){
+      Navigator.push(context,
+          new MaterialPageRoute(builder: (BuildContext context) {
+            return new Foires_Salons();
+          }));
+
+    } else if (a == "Partenariats et conventions"){
+      Navigator.push(context,
+          new MaterialPageRoute(builder: (BuildContext context) {
+            return new Partenariats_conventions();
+          }));
+    } else if (a == "Opportunités d'affaires"){
+      Navigator.push(context,
+          new MaterialPageRoute(builder: (BuildContext context) {
+            return new Opportunites_affaires();
+          }));
+    } else if (a == "Présentation"){
+      Navigator.push(context,
+          new MaterialPageRoute(builder: (BuildContext context) {
+            return new Presentations();
+          }));
+    }  else if (a == "e") {
       Navigator.push(
         context,
         new PageRouteBuilder(
@@ -314,9 +346,20 @@ Navigator.push(context,
               tap("form");
             } else if (text == "Partenaires") {
               tap("Partners");
-            } else {
+            }else if(text == "Telechargements"){
+            tap("Telechargements");
+            }else if(text == "Foires & Salons"){
+              tap("Foires & Salons");
+            } else if(text == "Partenariats et conventions"){
+              tap("Partenariats et conventions");
+            } else if(text == "Opportunités d'affaires"){
+              tap("Opportunités d'affaires");
+            } else if(text == "Présentation"){
+              tap("Présentation");
+            } else  {
               tap("d");
             }
+
           },
           /* leading: new Image.asset(
         img,
@@ -579,6 +622,19 @@ Navigator.push(context,
                       25.0, 25.0),
                   lst("images/morocco.png", "Partenaires", tap, 25.0, 25.0),
                   lst("images/morocco.png", "Formation", tap, 25.0, 25.0),
+
+                  lst("images/morocco.png", "Telechargements", tap, 25.0, 25.0),
+                  lst("images/morocco.png", "Foires & Salons", tap, 25.0, 25.0),
+                  lst("images/morocco.png", "Partenariats et conventions", tap, 25.0, 25.0),
+
+                  lst("images/morocco.png", "Opportunités d'affaires", tap, 25.0, 25.0),
+                  lst("images/morocco.png", "Présentation", tap, 25.0, 25.0),
+
+
+
+
+
+
 
                   //ss    prod,
                   //  Container(child: con),

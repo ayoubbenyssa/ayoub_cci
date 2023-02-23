@@ -169,8 +169,7 @@ class _ParcState extends State<Opportunite>
                             icon: Image.asset(
                               "images/icons/opportunity.png",
                               color: Fonts.col_app,
-                              width:
-                              MediaQuery.of(context).size.width * 0.08,
+                              width: MediaQuery.of(context).size.width * 0.08,
                             ),
                             hintMaxLines: 2,
                             labelText: LinkomTexts.of(context).search_opp(),
