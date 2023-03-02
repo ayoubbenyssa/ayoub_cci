@@ -358,7 +358,8 @@ class _ParcState extends State<Opportunite>
                     ],
                   ))))
 
-          : new Column(
+          :
+      new Column(
         children: <Widget>[
           drop_down(),
           new Expanded(

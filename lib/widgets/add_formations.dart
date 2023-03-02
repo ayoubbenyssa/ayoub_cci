@@ -1,47 +1,48 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:mycgem/communities/ville_list.dart';
 import 'package:mycgem/login/pays_list.dart';
 import 'package:mycgem/services/Fonts.dart';
-import 'package:mycgem/services/validators.dart';
-import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
-import '../widgets.dart';
+import 'package:mycgem/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 
-class Opportunites_affaires extends StatefulWidget {
+class Add_formation extends StatefulWidget {
 
   @override
-  _Opportunites_affairesState createState() => _Opportunites_affairesState();
+  _Add_formationState createState() => _Add_formationState();
 }
 
-class _Opportunites_affairesState extends State<Opportunites_affaires> {
-  final _activitecontroller = new TextEditingController();
-  FocusNode _focusactvt = new FocusNode();
+class _Add_formationState extends State<Add_formation> {
+  final _intitulecontroller = new TextEditingController();
+  FocusNode _focusintitule = new FocusNode();
+
+  FocusNode _focusedesc = new FocusNode();
+  final _desccontroller = new TextEditingController();
+
+  FocusNode _focuspa = new FocusNode();
   final _pacontroller = new TextEditingController();
+
   final _vicontroller = new TextEditingController();
-  final _secturescontroller = new TextEditingController();
-  final _RCcontroller = new TextEditingController();
-  final _adressecontroller = new TextEditingController();
-  final _tellcontroller = new TextEditingController();
-  final _emailcontroller = new TextEditingController();
-  final _site_webcontroller = new TextEditingController();
 
   String _authHint = '';
-  FocusNode _focuspa = new FocusNode();
-  FocusNode _focusecteur = new FocusNode();
-  FocusNode _focuseRC = new FocusNode();
-  FocusNode _focusetell = new FocusNode();
-  FocusNode _focuseadresse = new FocusNode();
-  FocusNode _focuseemal = new FocusNode();
-  FocusNode _focuseweb = new FocusNode();
 
-  FocusNode _focusville = new FocusNode();
   String ss_region_id = "";
   String ville_id = "";
   List<String> type = [];
+
   DateTime date = DateTime.now();
+
+  FocusNode _focusville = new FocusNode();
+
+  FocusNode _focusetell = new FocusNode();
+  final _tellcontroller = new TextEditingController();
+
+  FocusNode _focuseemal = new FocusNode();
+  final _emailcontroller = new TextEditingController();
+
+  bool payant = true ;
 
   open_bottomsheet() {
     showModalBottomSheet<bool>(
@@ -68,26 +69,23 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
         });
   }
 
-  Widget btn_log = new InkWell(
-    // color:  const Color(0xffa3bbf1),
-    onTap: () {
-      // _handleSubmitted();
-    },
-    child: Center(child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(25)),
-        border: Border.all(color : Color(0xffF8F8F8) ,width: 0.5),
-        color :Color(0xff218BB1),
-      ),
-      // height: 48,
-      width: 100,
-      child: Center(child: Text("Enregistrer",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.w500,fontFamily: "louis george cafe"),)),
+  // Map<String, bool> values = {
+  //   'foo': true,
+  //   'bar': false,
+  // };
+
+  Widget btn_log = Center(child: Container(
+    padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(25)),
+      border: Border.all(color : Color(0xffF8F8F8) ,width: 0.5),
+      color :Color(0xff218BB1),
     ),
-    ),
+    // height: 48,
+    width: 100,
+    child: Center(child: Text("Enregistrer",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.w500,fontFamily: "louis george cafe"),)),
+  ),
   );
-
-
   choose_date_start() async {
     DateTime newDateTime = await showRoundedDatePicker(
       context: context,
@@ -108,10 +106,16 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
-    Validators val = new Validators(context: context);
+    Widget intitule = Widgets.textfield_des(
+        "Intitulé  ",
+        _focusintitule,
+        "",
+        _intitulecontroller,
+        TextInputType.text,
+        null
+    );
 
     Widget debut = InkWell(
         onTap: () {
@@ -119,10 +123,10 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
         },
         child: Container(
             decoration: BoxDecoration(
-        color: Color(0xffF8F8F8),
-        borderRadius: BorderRadius.all(Radius.circular(25))
-    ),
-        padding: EdgeInsets.only(left: 12,right: 12,top: 10,bottom: 10),
+                color: Color(0xffF8F8F8),
+                borderRadius: BorderRadius.all(Radius.circular(25))
+            ),
+            padding: EdgeInsets.only(left: 12,right: 12,top: 10,bottom: 10),
             child: Row(children: [
               Container(width: 12.w),
               Column(
@@ -131,8 +135,8 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
                   Container(
                     height: 4.h,
                   ),
-                  Text("Date d'absence",
-                      style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                  Text("Date Formation",
+                    style: TextStyle(fontSize: 14.0, color: Colors.grey),
                   ),
                   Container(height: 4.h)
                 ],
@@ -143,20 +147,61 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
                   TextStyle(fontSize: 14.0, color: Colors.grey)
               ),
               SizedBox(width: 15,),
-              Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+              Container(child: Image.asset("images/date.png",height: 25,width: 25,fit: BoxFit.cover,),),
               SizedBox(width: 10,),
               Container(
-                width: 8.w,
+                // width: 8.w,
               )
             ])));
 
-    Widget activities = Widgets.textfield_des(
-        "Intitulé  ",
-        _focusactvt,
-        "",
-        _activitecontroller,
-        TextInputType.text,
-        null
+    Widget description = Expanded(
+        child: Container(
+            margin: EdgeInsets.only(left: 12.0),
+            decoration: new BoxDecoration(
+              // border: new Border.all(color: Colors.grey[400], width: 1.0),
+                borderRadius: new BorderRadius.circular(25.0)),
+            child: Widgets.textfield0(
+              "Description",
+              _focusedesc,
+              "",
+              _desccontroller,
+              TextInputType.text,
+            )));
+
+    Widget pays =   Expanded(
+        child:GestureDetector(
+            onTap: () async {
+              setState(() {
+                _authHint = "";
+                _vicontroller.text = "";
+              });
+
+              List vi = await Navigator.push(context,
+                  new MaterialPageRoute(builder: (BuildContext context) {
+                    return new PaysLIst();
+                  }));
+
+              setState(() {
+                _pacontroller.text = vi[1];
+              });
+
+            },
+            child: AbsorbPointer(
+                child: new Container(
+                    margin: EdgeInsets.only(left: 12.0),
+                    decoration: new BoxDecoration(
+                      // border: new Border.all(color: Colors.grey[400], width: 1.0),
+                        borderRadius: new BorderRadius.circular(25.0)),
+                    child: Widgets.textfield0(
+                      "Pays",
+                      _focuspa,
+                      "",
+                      _pacontroller,
+                      TextInputType.text,
+                    )
+                )
+            )
+        )
     );
 
     Widget ville = Expanded(child: _pacontroller.text != "Maroc"
@@ -211,34 +256,6 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
                   TextInputType.text,
                 )))));
 
-    Widget secteur_dacturte = Expanded(
-          child: Container(
-              margin: EdgeInsets.only(left: 12.0),
-              decoration: new BoxDecoration(
-                // border: new Border.all(color: Colors.grey[400], width: 1.0),
-                  borderRadius: new BorderRadius.circular(25.0)),
-              child: Widgets.textfield0(
-                "Secteur d'acturtés",
-                _focusecteur,
-                "",
-                _secturescontroller,
-                TextInputType.text,
-              )));
-
-    Widget r_s = Expanded(
-        child: Container(
-            margin: EdgeInsets.only(left: 12.0),
-            decoration: new BoxDecoration(
-              // border: new Border.all(color: Colors.grey[400], width: 1.0),
-                borderRadius: new BorderRadius.circular(25.0)),
-            child: Widgets.textfield0(
-              "R.S",
-              _focuseRC,
-              "",
-              _RCcontroller,
-              TextInputType.text,
-            )));
-
     Widget tell = Expanded(
         child: Container(
             margin: EdgeInsets.only(left: 12.0),
@@ -251,20 +268,6 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
               "",
               _tellcontroller,
               TextInputType.number,
-            )));
-
-    Widget adresse = Expanded(
-        child: Container(
-            margin: EdgeInsets.only(left: 12.0),
-            decoration: new BoxDecoration(
-              // border: new Border.all(color: Colors.grey[400], width: 1.0),
-                borderRadius: new BorderRadius.circular(25.0)),
-            child: Widgets.textfield0(
-              "Addresse",
-              _focuseadresse,
-              "",
-              _adressecontroller,
-              TextInputType.text,
             )));
 
     Widget email = Expanded(
@@ -281,52 +284,6 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
               TextInputType.emailAddress,
             )));
 
-    Widget web_site = Expanded(
-        child: Container(
-            margin: EdgeInsets.only(left: 12.0),
-            decoration: new BoxDecoration(
-              // border: new Border.all(color: Colors.grey[400], width: 1.0),
-                borderRadius: new BorderRadius.circular(25.0)),
-            child: Widgets.textfield0(
-              "Site web",
-              _focuseweb,
-              "",
-              _site_webcontroller,
-              TextInputType.text,
-            )));
-
-    Widget pays =   Expanded(
-        child:GestureDetector(
-            onTap: () async {
-              setState(() {
-                _authHint = "";
-                _vicontroller.text = "";
-              });
-
-              List vi = await Navigator.push(context,
-                  new MaterialPageRoute(builder: (BuildContext context) {
-                    return new PaysLIst();
-                  }));
-
-              setState(() {
-                _pacontroller.text = vi[1];
-              });
-
-            },
-            child: AbsorbPointer(
-                child: new Container(
-                    margin: EdgeInsets.only(left: 12.0),
-                    decoration: new BoxDecoration(
-                      // border: new Border.all(color: Colors.grey[400], width: 1.0),
-                        borderRadius: new BorderRadius.circular(25.0)),
-                    child: Widgets.textfield0(
-                      "Pays",
-                      _focuspa,
-                      "",
-                      _pacontroller,
-                      TextInputType.text,
-                    )))));
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(247, 247, 247, 100),
@@ -335,7 +292,7 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Opportunités d'Affaires", style: TextStyle(color: Color(0xff272C6E),fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "louis george cafe"),),
+            Text("Ajouter une formation", style: TextStyle(color: Color(0xff272C6E),fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "louis george cafe"),),
             Container(
               margin: EdgeInsets.only(right: 10,),
               height: 40,
@@ -392,9 +349,30 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
                                 Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
                                 SizedBox(width: 10,),
                               ],),),
-                          activities,
+                          intitule,
                         ],
                       )),
+
+
+                  new Container(
+                    height: 12.0,
+                  ),
+
+                  Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xffF8F8F8),
+                          borderRadius: BorderRadius.all(Radius.circular(25))
+                      ),
+                      padding: EdgeInsets.only(left: 12,right: 12),
+                      child: Row(
+                        children: [
+                          description,
+                          Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                          SizedBox(width: 10,),
+                        ],
+                      )
+                  ),
+
 
                   new Container(
                     height: 12.0,
@@ -402,9 +380,13 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
 
                   debut,
 
+
+
                   new Container(
                     height: 12.0,
                   ),
+
+
 
                   Container(
                       decoration: BoxDecoration(
@@ -414,53 +396,12 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
                       padding: EdgeInsets.only(left: 12,right: 12),
                       child: Row(
                         children: [
-                          secteur_dacturte,
-                          Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                          pays,
+                          Container(child: Image.asset("images/localisation.png",height: 25,width: 25,fit: BoxFit.cover,),),
                           SizedBox(width: 10,),
+
                         ],
-                      )
-                  ),
-
-                  new Container(
-                    height: 12.0,
-                  ),
-
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffF8F8F8),
-                          borderRadius: BorderRadius.all(Radius.circular(25))
-                      ),
-                      padding: EdgeInsets.only(left: 12,right: 12),
-                      child: Row(
-                        children: [
-                          r_s,
-                          Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
-                          SizedBox(width: 10,),
-                        ],
-                      )
-                  ),
-
-
-                  new Container(
-                    height: 12.0,
-                  ),
-
-
-
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffF8F8F8),
-                          borderRadius: BorderRadius.all(Radius.circular(25))
-                      ),
-                      padding: EdgeInsets.only(left: 12,right: 12),
-                      child: Row(
-                    children: [
-                      pays,
-                      Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
-                      SizedBox(width: 10,),
-
-                    ],
-                  )),
+                      )),
 
                   new Container(
                     height: 12.0,
@@ -475,11 +416,82 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
                       child: Row(
                         children: [
                           ville,
-                          Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                          Container(child: Image.asset("images/localisation.png",height: 25,width: 25,fit: BoxFit.cover,),),
                           SizedBox(width: 10,),
 
                         ],
                       )),
+
+                  new Container(
+                    height: 12.0,
+                  ),
+
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(child: Text("payent "),),
+                            SizedBox(width: 10,),
+                            Container(child:
+                            Checkbox(
+                              checkColor: Colors.white,
+                              value: payant,
+                                onChanged : (value){
+                                setState(() {
+                                  payant = true ;
+                                });
+                                }
+                            )
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15,),
+
+                        Row(
+                          children: [
+                            Container(child: Text("gratuite "),),
+                            SizedBox(width: 10,),
+                            Container(child:
+                            Checkbox(
+                                checkColor: Colors.white,
+                                value: !payant,
+                                onChanged : (value){
+                                  setState(() {
+                                    payant = false ;
+                                  });
+                                }
+                            )
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+
+
+                  ),
+
+
+
+                  // new Container(
+                  //   height: 12.0,
+                  // ),
+                  //
+                  // Container(
+                  //     decoration: BoxDecoration(
+                  //         color: Color(0xffF8F8F8),
+                  //         borderRadius: BorderRadius.all(Radius.circular(25))
+                  //     ),
+                  //     padding: EdgeInsets.only(left: 12,right: 12),
+                  //     child: Row(
+                  //       children: [
+                  //         r_s,
+                  //         Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                  //         SizedBox(width: 10,),
+                  //       ],
+                  //     )
+                  // ),
 
                   new Container(
                     height: 12.0,
@@ -504,24 +516,24 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
 
 
 
-                  new Container(
-                    height: 12.0,
-                  ),
-
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffF8F8F8),
-                          borderRadius: BorderRadius.all(Radius.circular(25))
-                      ),
-                      padding: EdgeInsets.only(left: 12,right: 12),
-                      child: Row(
-                        children: [
-                          adresse,
-                          Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
-                          SizedBox(width: 10,),
-                        ],
-                      )
-                  ),
+                  // new Container(
+                  //   height: 12.0,
+                  // ),
+                  //
+                  // Container(
+                  //     decoration: BoxDecoration(
+                  //         color: Color(0xffF8F8F8),
+                  //         borderRadius: BorderRadius.all(Radius.circular(25))
+                  //     ),
+                  //     padding: EdgeInsets.only(left: 12,right: 12),
+                  //     child: Row(
+                  //       children: [
+                  //         adresse,
+                  //         Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                  //         SizedBox(width: 10,),
+                  //       ],
+                  //     )
+                  // ),
 
 
 
@@ -547,24 +559,24 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
 
 
 
-                  new Container(
-                    height: 12.0,
-                  ),
-
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xffF8F8F8),
-                          borderRadius: BorderRadius.all(Radius.circular(25))
-                      ),
-                      padding: EdgeInsets.only(left: 12,right: 12),
-                      child: Row(
-                        children: [
-                          web_site,
-                          Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
-                          SizedBox(width: 10,),
-                        ],
-                      )
-                  ),
+                  // new Container(
+                  //   height: 12.0,
+                  // ),
+                  //
+                  // Container(
+                  //     decoration: BoxDecoration(
+                  //         color: Color(0xffF8F8F8),
+                  //         borderRadius: BorderRadius.all(Radius.circular(25))
+                  //     ),
+                  //     padding: EdgeInsets.only(left: 12,right: 12),
+                  //     child: Row(
+                  //       children: [
+                  //         web_site,
+                  //         Container(child: Image.asset("images/edittt.png",height: 15,width: 15,fit: BoxFit.cover,),),
+                  //         SizedBox(width: 10,),
+                  //       ],
+                  //     )
+                  // ),
 
                   new Container(
                     height: 12.0,
@@ -617,7 +629,18 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
                     height: 12.0,
                   ),
 
-                  btn_log,
+                  InkWell(
+                      onTap: () {
+                        print("@@@@@@@@@@");
+                        print(_intitulecontroller.text);
+                        print(_desccontroller.text);
+                        print(date);
+
+
+
+                        // _handleSubmitted();
+                      },
+                      child: btn_log),
                   new Container(
                     height: 8.0,
                   ),
@@ -630,6 +653,8 @@ class _Opportunites_affairesState extends State<Opportunites_affaires> {
             ),
           )
       ),
+
+
     );
   }
 }

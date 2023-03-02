@@ -112,6 +112,7 @@ dependencies:
   firebase_remote_config:
   flutter_inappwebview: 4.0.0+4
   flutter_rounded_date_picker: 2.0.2
+  flutter_pdfview:
 
 
 

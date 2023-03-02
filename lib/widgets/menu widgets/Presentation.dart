@@ -1,12 +1,21 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:mycgem/func/parsefunc.dart';
+import 'package:mycgem/models/presentations.dart';
 
 class Presentations extends StatefulWidget {
+
 
   @override
   _PresentationsState createState() => _PresentationsState();
 }
 
 class _PresentationsState extends State<Presentations> {
+
+  bool plus_presentation = false ;
+
   styleText(){
     return TextStyle(fontFamily: "louis george cafe", fontSize: 15,fontWeight: FontWeight.bold,color: Color(0xff707070));
   }
@@ -60,6 +69,57 @@ class _PresentationsState extends State<Presentations> {
       fontSize: 25,
       fontFamily:"louis george cafe",
     );
+  }
+  ParseServer parse_s = new ParseServer();
+  presentation pres = new presentation();
+
+  getPresntation() async {
+    var a = await parse_s
+        .getparse('presentation');
+    print("aaaaaa $a");
+    print("********** Nom 8 ***********");
+    print("aaaaaa");
+
+    // var responsebody = jsonDecode(a);
+    print("********** Nom 1 ***********");
+
+    var presontation_ccis ;
+
+    print("********** Nom 2 ***********");
+
+    presontation_ccis = a['results'] ;
+
+    return presontation_ccis ;
+  }
+
+  get_info() async{
+    print("********** Nom 3***********");
+
+    var compt = await getPresntation() ;
+    print("********** Nom 4 ***********");
+    print("aaaaaa ${compt}");
+
+    if(!this.mounted) return;
+    print("********** Nom 5***********");
+    print("aaaaaa111 ${compt[0]}");
+
+    setState(() {
+      pres.fromJson_presentation(compt[0]);
+    });
+    print("********** Nom ***********");
+    print(pres.craeteAt);
+    print("********** Nom ***********");
+
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getPresntation();
+    print("********** @@@@***********");
+    get_info() ;
+    print("********** !!!!***********");
+
   }
   @override
   Widget build(BuildContext context) {
@@ -119,7 +179,11 @@ class _PresentationsState extends State<Presentations> {
                   child: Column(
                     children: [
                       Container(
-                        child: Text("Créée en 1962, la Chambre de Commerce, d’Industrie et de Services de Souss Massa « CCISSM », Chambre professionnelle est un organisme public chargé de représenter, défendre et développer les intérêts de l’ensemble des entreprises patentées, sises dans sa circonscription territoriale qui s’étend sur une superficie de 52.064 km2 et englobe plus de 64000 entreprises.",
+                        child:
+                        Text( pres.text.toString()
+                      .replaceAll(RegExp(r'(\\n)+'), ''),
+                          maxLines: ! plus_presentation ? 14 : null,
+                          // "Créée en 1962, la Chambre de Commerce, d’Industrie et de Services de Souss Massa « CCISSM », Chambre professionnelle est un organisme public chargé de représenter, défendre et développer les intérêts de l’ensemble des entreprises patentées, sises dans sa circonscription territoriale qui s’étend sur une superficie de 52.064 km2 et englobe plus de 64000 entreprises.",
                           style: styleText(),
                         ),
                       ),
@@ -127,16 +191,23 @@ class _PresentationsState extends State<Presentations> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 12,vertical: 4),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff187FB2),width: 0.5),
-                                color: Color(0xffF8F8F8),
-                                borderRadius: BorderRadius.all(Radius.circular(25))
+                          InkWell(
+                            onTap: (){
+                              setState(() {
+                                plus_presentation = plus_presentation ? false : true ;
+                              });
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 12,vertical: 4),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Color(0xff187FB2),width: 0.5),
+                                  color: Color(0xffF8F8F8),
+                                  borderRadius: BorderRadius.all(Radius.circular(25))
+                              ),
+                              child: Text(plus_presentation ? "voir moins" : "Voir plus",style: TextStyle(
+                                  color: Color(0xff187FB2),fontWeight: FontWeight.w400,fontSize: 11,fontFamily: "louis george cafe"
+                              ),),
                             ),
-                            child: Text("Voir plus",style: TextStyle(
-                                color: Color(0xff187FB2),fontWeight: FontWeight.w400,fontSize: 11,fontFamily: "louis george cafe"
-                            ),),
                           )
                         ],
                       )
@@ -255,4 +326,5 @@ class _PresentationsState extends State<Presentations> {
 
     );
   }
+
 }

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mycgem/models/patner.dart';
+import 'package:mycgem/services/partners_list.dart';
+
+import '../widgets.dart';
 
 class Partenariats_conventions extends StatefulWidget {
 
@@ -8,7 +12,21 @@ class Partenariats_conventions extends StatefulWidget {
 
 class _Partenariats_conventionsState extends State<Partenariats_conventions> {
 
-  Widget items_cart(image,title,text){
+  List<Partnr> gal = [];
+  bool load = true;
+
+  getAll() async {
+    var a = await PartnersList.get_list_partners_all();
+    if (!this.mounted) return;
+    setState(() {
+      gal = a;
+      // gal.insert(0, Partnr(date: "Date", name: "Convention", country: "Pays"));
+
+      load = false;
+    });
+  }
+
+  Widget items_cart(image,title,text,iconH,iconW){
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 5),
 
@@ -19,7 +37,7 @@ class _Partenariats_conventionsState extends State<Partenariats_conventions> {
             Row(
               children: [
                 Container(
-                  child: Image.asset(image,height: 15,width: 14,fit: BoxFit.cover,),
+                  child: Image.asset(image,height: iconH,width: iconW,fit: BoxFit.cover,),
                 ),
                 SizedBox(width: 6,),
                 Container(
@@ -47,7 +65,7 @@ class _Partenariats_conventionsState extends State<Partenariats_conventions> {
     );
   }
 
-  Widget cart_item(image  , title ,text){
+  Widget cart_item(date  , CONVENTION ,PAYS){
     return  Container(
       margin: EdgeInsets.only(bottom: 10),
       padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
@@ -59,12 +77,18 @@ class _Partenariats_conventionsState extends State<Partenariats_conventions> {
       ),
       child: Column(
         children: [
-          items_cart("images/phonex.png","DATE :" , "19/05/1994")   ,
-          items_cart("images/phonex.png","CONVENTION :" ,"Concention de collaboration  Concention de collaboration Concention de collaboration,Concention de collaboration ,Concention de collaboration")   ,
-          items_cart("images/phonex.png","PAYS : " , "LES ILES CANARIES")   ,
+          items_cart("images/date.png","DATE :" , date,20.00,17.00)   ,
+          items_cart("images/handshake.png","CONVENTION :" ,CONVENTION,15.00,14.00)   ,
+          items_cart("images/localisation.png","PAYS : " , PAYS,20.00,17.00)   ,
         ],
       ),
     );
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAll();
   }
 
   @override
@@ -111,19 +135,18 @@ class _Partenariats_conventionsState extends State<Partenariats_conventions> {
               color: Colors.white,
             ),
 
-            child: SingleChildScrollView(
+            child: load ? Center(child: Widgets.load()) : SingleChildScrollView(
               child: Column(
-                children: [
-                  cart_item("images/phonex.png","DATE :" , "19/05/1994")   ,
-                  cart_item("images/phonex.png","CONVENTION :" ," Concention de collaboration  Concention de collaboration Concention de collaboration,Concention de collaboration ,Concention de collaboration")   ,
-                  cart_item("images/phonex.png","PAYS : " , "LES ILES CANARIES")   ,
 
+                  children: gal
+                      .map(
+                        (e) =>
+                        cart_item(e.date.split("T")[0],e.name,e.country)
+                  )
+                      .toList()),
 
-                ],
-              ),
-            )
         ),
-      ),
+      ))
     );
   }
 }

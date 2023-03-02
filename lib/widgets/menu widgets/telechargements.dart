@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mycgem/pages/conditions.dart';
+import 'package:mycgem/widgets/menu%20widgets/view_pdf.dart';
 class Telechargements extends StatefulWidget {
 
 
@@ -8,36 +10,74 @@ class Telechargements extends StatefulWidget {
 }
 
 class _TelechargementsState extends State<Telechargements> {
+  String localPath;
+
 
   Widget cart_dowloand(){
-    return  Container(
-      padding: EdgeInsets.symmetric(horizontal: 9,vertical: 8),
-      height: 193,width: 138,
-      decoration: BoxDecoration(
-        color: Color(0xffFDFCFC),
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        border: Border.all(color: Color(0xffC9C9CE),width: 1),
-      ),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(25)),
+    return  InkWell(
+      onTap: (){
+        {
+          Navigator.push(context, new MaterialPageRoute<String>(
+              builder: (BuildContext context) {
+                return new WebviewScaffold(
+                  url: "https://www.ibm.com/downloads/cas/GJ5QVQ7X",
+                  withJavascript: true,
+                  withZoom: true,
+                  // zoom
+                  hidden: true,
+                  appBar: new AppBar(
+                    title: new Text(""),
+                  ),
+                );
+              }));
 
+          Navigator.push(context, new MaterialPageRoute<String>(
+              builder: (BuildContext context) {
+                return new PdfViewerPage(
+                  "https://www.ibm.com/downloads/cas/GJ5QVQ7X", "Evolution des indices des prix des materiaux de construction du grand Agadir"
+                );
+              }));
+
+          // Navigator.push(context, new MaterialPageRoute<String>(
+          // builder: (BuildContext context) {
+          //   return new PdfViewerPage() }));
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 9,vertical: 8),
+        height: 193,width: 138,
+        decoration: BoxDecoration(
+          color: Color(0xffFDFCFC),
+          borderRadius: BorderRadius.all(Radius.circular(18)),
+          border: Border.all(color: Color(0xffC9C9CE),width: 1),
+        ),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(25)),
+
+              ),
+              height: 122,width: 122,
+              padding: EdgeInsets.symmetric(horizontal: 9,vertical: 8),
+              child: Image.asset("assets/images/logo.png",fit: BoxFit.cover,),
             ),
-            height: 122,width: 122,
-            padding: EdgeInsets.symmetric(horizontal: 9,vertical: 8),
-            child: Image.asset("assets/images/logo.png",fit: BoxFit.cover,),
-          ),
-          SizedBox(height: 2,),
-          Container(
-            child: Text("Evolution des indices des prix des materiaux de construction du grand Agadir",
-              maxLines: 3,
-              style: TextStyle(color: Color(0xffA9A9A9),fontFamily: "louis george cafe" ,fontSize:12 ,fontWeight: FontWeight.bold),),
-          )
-        ],
+            SizedBox(height: 2,),
+            Container(
+              child: Text("Evolution des indices des prix des materiaux de construction du grand Agadir",
+                maxLines: 3,
+                style: TextStyle(color: Color(0xffA9A9A9),fontFamily: "louis george cafe" ,fontSize:12 ,fontWeight: FontWeight.bold),),
+            )
+          ],
+        ),
       ),
     );
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
   }
   @override
   Widget build(BuildContext context) {

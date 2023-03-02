@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mycgem/func/parsefunc.dart';
+import 'package:mycgem/models/modulefoire_salon.dart';
 
 class Foires_Salons extends StatefulWidget {
 
@@ -7,6 +9,8 @@ class Foires_Salons extends StatefulWidget {
 }
 
 class _Foires_SalonsState extends State<Foires_Salons> {
+  List<ModuleFoire_salon> foire_salon = new List<ModuleFoire_salon>();
+
   Widget items_cart(image,text,ht ,wd){
     return Container(
       margin: EdgeInsets.only(bottom: 5),
@@ -45,7 +49,7 @@ class _Foires_SalonsState extends State<Foires_Salons> {
             ),
             height: 80,width: 110,
             padding: EdgeInsets.symmetric(horizontal: 9.0,vertical: 8),
-            child: Image.asset(image,fit: BoxFit.cover,),
+            child: Image.network(image.toString(),fit: BoxFit.cover,),
           ),
           Flexible(
             child: Container(
@@ -74,9 +78,9 @@ class _Foires_SalonsState extends State<Foires_Salons> {
                ),
                SizedBox(height: 5,),
 
-                 adresse != "" ?  items_cart("images/edittt.png",adresse,8.0,9.0) : Container(),
-                 date != "" ?   items_cart("images/edittt.png",date,8.0,9.0) : Container(),
-                 org != "" ? items_cart("images/edittt.png",org,8.0,9.0) : Container(),
+                 adresse != "" ?  items_cart("images/localisation.png",adresse,8.0,9.0) : Container(),
+                 date != "" ?   items_cart("images/date.png",date,8.0,9.0) : Container(),
+                 org != "" ? items_cart("images/Tracee.png",org,8.0,9.0) : Container(),
                  tell != "" ?items_cart("images/phonex.png",tell,8.0,9.0) : Container(),
                  email != "" ? items_cart("images/attchaa.png",email,8.0,9.0) : Container(),
 
@@ -88,6 +92,47 @@ class _Foires_SalonsState extends State<Foires_Salons> {
       ),
     );
   }
+
+  ParseServer parse_s = new ParseServer();
+
+  getFoire_salon() async {
+    var a = await parse_s
+        .getparse('foire_salon');
+    print("aaaaaa $a");
+    print("********** Nom 8 ***********");
+    List presontation_ccis ;
+
+    print("********** 8");
+    presontation_ccis = a['results'] ;
+    print("********** 8");
+    print(presontation_ccis);
+    return presontation_ccis.map((var contactRaw) => new ModuleFoire_salon.fromMap(contactRaw)).toList();
+
+  }
+
+  get_info() async{
+    var a = await getFoire_salon();
+
+    setState(() {
+      print("!!!!!!!!!!!!!!!!!!!!!");
+      foire_salon = a;
+      print("?????????????????????");
+
+    });
+    foire_salon.map((e){
+      print("%%%%%%%%%%%%");
+
+      print("@@@@@@@@@ ${e.objectId.toString()}");
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getFoire_salon();
+    get_info();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,15 +179,14 @@ class _Foires_SalonsState extends State<Foires_Salons> {
 
             child: SingleChildScrollView(
               child: Column(
-                children: [
-                  cart_item("assets/images/logo.png","FI EUROPE & NI 2015","Salon international des ingrédients alimentaires","Paris / France","Du 01 au 03 décembre 2015","United Business Media","+31 20 40 99 544","http://www.ubm.com/",""),
-                  cart_item("assets/images/logo.png","FI EUROPE & NI 2015","Salon international des ingrédients alimentaires","Paris / France","Du 01 au 03 décembre 2015","United Business Media","+31 20 40 99 544","http://www.ubm.com/",""),
-                  cart_item("assets/images/logo.png","FI EUROPE & NI 2015","Salon international des ingrédients alimentaires","Paris / France","Du 01 au 03 décembre 2015","United Business Media","+31 20 40 99 544","http://www.ubm.com/",""),
-                  cart_item("assets/images/logo.png","FI EUROPE & NI 2015","Salon international des ingrédients alimentaires","Paris / France","Du 01 au 03 décembre 2015","United Business Media","+31 20 40 99 544","http://www.ubm.com/",""),
+    children: foire_salon
+        .map((e) => cart_item(e.images[0].toString(),"FI EUROPE & NI 2015",e.liblle.toString(),e.lieu.toString(),"Du "+e.date_debut.toString(), e.secteur_economique.toString(),e.telephone.toString(),e.website.toString(),e.email.toString()),
+                  // cart_item("assets/images/logo.png","FI EUROPE & NI 2015","Salon international des ingrédients alimentaires","Paris / France","Du 01 au 03 décembre 2015","United Business Media","+31 20 40 99 544","http://www.ubm.com/",""),
+                  // cart_item("assets/images/logo.png","FI EUROPE & NI 2015","Salon international des ingrédients alimentaires","Paris / France","Du 01 au 03 décembre 2015","United Business Media","+31 20 40 99 544","http://www.ubm.com/",""),
+                  // cart_item("assets/images/logo.png","FI EUROPE & NI 2015","Salon international des ingrédients alimentaires","Paris / France","Du 01 au 03 décembre 2015","United Business Media","+31 20 40 99 544","http://www.ubm.com/",""),
 
 
-                ],
-              ),
+    ).toList()),
             )
         ),
       ),

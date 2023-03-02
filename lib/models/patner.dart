@@ -8,7 +8,7 @@ class Partnr {
 
   Partnr({this.date, this.name, this.country});
   Partnr.fromMap(Map<String, dynamic> map)
-      : date = "${map['Date']}",
-        name = "${map['name']}",
-        country = "${map['country']}";
+      : date = "${map['createdAt']}",
+        name = "${map['rs']}",
+        country = "${map['pays']}";
 }
