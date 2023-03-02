@@ -152,6 +152,7 @@ class _PresentationState extends State<Formations> {
         floatingActionButton: FloatingActionButton(
           heroTag: null,
           highlightElevation: 7.0,
+          backgroundColor: Colors.transparent,
 
           elevation: 0.0,
           //iconSize: 62,

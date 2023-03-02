@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:mycgem/communities/ville_list.dart';
@@ -6,7 +8,7 @@ import 'package:mycgem/services/Fonts.dart';
 import 'package:mycgem/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-
+import 'package:http/http.dart' as clientHttp;
 
 class Add_formation extends StatefulWidget {
 
@@ -41,6 +43,24 @@ class _Add_formationState extends State<Add_formation> {
 
   FocusNode _focuseemal = new FocusNode();
   final _emailcontroller = new TextEditingController();
+
+  paramsparsejson() {
+    return {
+      "X-Parse-Application-Id": "C9EcHeKgPkRnUrWtYw3y5A8DaFcJfMhQmSp",
+      "Content-Type": 'applicaton/json',
+      'X-Parse-Master-Key': 'nTrWtYw3y5A8DaFcJfMhPmSpUsXuZw4z6B8'
+    };
+  }
+
+  Map<String, Object> add_formation = {
+    'date_formation': '',
+    'telephone': '',
+    'payante': '',
+    'lieu': '',
+    'titre': '',
+    'email': '',
+    'description': '',
+  };
 
   bool payant = true ;
 
@@ -630,15 +650,31 @@ class _Add_formationState extends State<Add_formation> {
                   ),
 
                   InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        var url = Uri.parse('http://217.182.139.190:1383/parse/classes/formation');
+
                         print("@@@@@@@@@@");
                         print(_intitulecontroller.text);
                         print(_desccontroller.text);
                         print(date);
-
-
-
+                        print("pays " +_pacontroller.text);
+                        print("ville " +_vicontroller.text);
+                        print("payent " +payant.toString());
+                        print("tee " +_tellcontroller.text);
+                        print("email " +_emailcontroller.text);
                         // _handleSubmitted();
+                        var body =  jsonEncode(<String, Object>{
+                          "date_formation": DateFormat('dd/MM/yyyy').format(date) ,
+                          "titre": _intitulecontroller.text,
+                          "email": _emailcontroller.text,
+                          "telephone": _tellcontroller.text,
+                          "payent": payant,
+                          "adresse": "${_pacontroller.text} ${_vicontroller.text}",
+                          "description": _desccontroller.text,
+                        });
+                        var response = await clientHttp.post(url ,headers: paramsparsejson() , body: body);
+                        var responsebody = jsonEncode(response.body);
+                        print("######## ${responsebody} ######");
                       },
                       child: btn_log),
                   new Container(
